@@ -97,17 +97,13 @@ class _ReactionButtonToggleState<T> extends State<ReactionButtonToggle<T>> {
 
   @override
   Widget build(BuildContext context) {
-    return Listener(
+    return GestureDetector(
       key: _buttonKey,
-      onPointerDown: (_) {
+      onLongPress: () {
         _onTapReactionButton();
       },
-      onPointerUp: (_) {
-        if (_timer?.isActive ?? false) {
-          _timer?.cancel();
-          _timer = null;
-          _onClickReactionButton();
-        }
+      onTap: () {
+        _onClickReactionButton();
       },
       child: (_selectedReaction ?? widget.reactions[0])!.icon,
     );
